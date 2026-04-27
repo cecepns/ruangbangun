@@ -2,11 +2,13 @@
 import { FALLBACK_IMAGE, fallbackAbout } from "../constants/site";
 
 export default function AboutPage({ data }) {
+  const aboutUsTitle = data.settings?.about_us_title?.trim() || "About Us";
+
   return (
     <section className="mx-auto flex min-h-[60vh] w-full max-w-7xl items-center px-4 py-12">
       <div className="grid w-full items-center gap-8 md:grid-cols-2">
         <div>
-      <h1 className="section-title">About Us</h1>
+          <h1 className="section-title">{aboutUsTitle}</h1>
           <p className="mt-5 leading-8">{data.settings?.about_us || fallbackAbout}</p>
         </div>
         <div className="flex justify-center md:justify-end">

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../api";
 
 export default function AdminLoginPage() {
-  const [email, setEmail] = useState("admin@ruangbangun.id");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("admin123");
   const [error, setError] = useState("");
   const navigate = useNavigate();

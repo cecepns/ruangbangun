@@ -11,23 +11,35 @@ export default function AdminSettingsPage() {
           key={key}
           className="mt-3 w-full rounded-xl border p-3"
           placeholder={key}
-          value={data.settings[key] || ""}
+          value={data.settings?.[key] || ""}
           onChange={(e) =>
             setData((prev) => ({
               ...prev,
-              settings: { ...prev.settings, [key]: e.target.value },
+              settings: { ...(prev.settings || {}), [key]: e.target.value },
             }))
           }
         />
       ))}
-      <label className="mt-4 block text-sm font-medium">Tentang Kami</label>
-      <textarea
-        className="mt-2 h-36 w-full rounded-xl border p-3"
-        value={data.settings.about_us || ""}
+      <label className="mt-4 block text-sm font-medium">Judul About Us</label>
+      <input
+        className="mt-2 w-full rounded-xl border p-3"
+        placeholder="About Us"
+        value={data.settings?.about_us_title || ""}
         onChange={(e) =>
           setData((prev) => ({
             ...prev,
-            settings: { ...prev.settings, about_us: e.target.value },
+            settings: { ...(prev.settings || {}), about_us_title: e.target.value },
+          }))
+        }
+      />
+      <label className="mt-4 block text-sm font-medium">Tentang Kami</label>
+      <textarea
+        className="mt-2 h-36 w-full rounded-xl border p-3"
+        value={data.settings?.about_us || ""}
+        onChange={(e) =>
+          setData((prev) => ({
+            ...prev,
+            settings: { ...(prev.settings || {}), about_us: e.target.value },
           }))
         }
       />
