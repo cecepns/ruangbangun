@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Runtime / cache
+.cache/
+.parcel-cache/
+.turbo/
+.vite/
+
+# Frontend artifacts
+frontend/dist/
+frontend/build/
+
+# Backend uploads and runtime files
+backend/uploads-ruangbangun/
+backend/tmp/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
