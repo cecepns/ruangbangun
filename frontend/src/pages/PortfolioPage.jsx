@@ -22,13 +22,12 @@ export default function PortfolioPage({ data }) {
     return data.portfolios.filter((item) => {
       const normalizedCategory = (item.category || "").trim().toLowerCase();
 
-      if (activeTab === "desain-arsitek") {
-        return normalizedCategory === "desain arsitek";
+      if (activeTab === "arsitektur") {
+        return normalizedCategory === "arsitektur";
       }
 
-      if (activeTab === "hasil-konstruksi") {
-        // Keep compatibility with old typo data: "kontruksi".
-        return normalizedCategory === "hasil konstruksi" || normalizedCategory === "hasil kontruksi";
+      if (activeTab === "interior") {
+        return normalizedCategory === "interior";
       }
 
       return true;
