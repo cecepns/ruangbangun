@@ -6,8 +6,8 @@ import { fileUrl } from "../../api";
 
 export default function AdminPortfolioPage() {
   const categoryOptions = [
-    { value: "Desain Arsitek", label: "Asitektur" },
-    { value: "Hasil Konstruksi", label: "Interior" },
+    { value: "Arsitektur", label: "Asitektur" },
+    { value: "Interior", label: "Interior" },
   ];
   const [openModal, setOpenModal] = useState(false);
   const [editingId, setEditingId] = useState(null);

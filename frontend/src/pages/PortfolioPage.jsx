@@ -7,8 +7,8 @@ import { FALLBACK_IMAGE } from "../constants/site";
 
 export default function PortfolioPage({ data }) {
   const tabs = [
-    { id: "desain-arsitek", label: "ARSITEKTUR" },
-    { id: "hasil-konstruksi", label: "INTERIOR" },
+    { id: "arsitektur", label: "ARSITEKTUR" },
+    { id: "interior", label: "INTERIOR" },
   ];
   const [activeTab, setActiveTab] = useState(tabs[0].id);
 
