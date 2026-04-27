@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Building2,
@@ -21,6 +21,7 @@ import kontraktorIcon from "../assets/our-services/kontraktor.jpg";
 export default function HomePage({ data }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const [heroSwiper, setHeroSwiper] = useState(null);
   const hero = data.banners[0];
   const heroBanners = data.banners.length
     ? data.banners
@@ -61,6 +62,16 @@ export default function HomePage({ data }) {
     ? data.testimonials
     : [{ id: 1, name: "Klien Ruang Bangun", quote: "Hasil desain dan pelaksanaannya sangat memuaskan." }];
 
+  useEffect(() => {
+    if (!heroSwiper || !prevRef.current || !nextRef.current) return;
+
+    heroSwiper.params.navigation.prevEl = prevRef.current;
+    heroSwiper.params.navigation.nextEl = nextRef.current;
+    heroSwiper.navigation.destroy();
+    heroSwiper.navigation.init();
+    heroSwiper.navigation.update();
+  }, [heroSwiper]);
+
   return (
     <main>
       <section className="relative mx-auto w-full py-0">
@@ -69,6 +80,7 @@ export default function HomePage({ data }) {
           slidesPerView={1}
           pagination={{ clickable: true }}
           navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
+          onSwiper={setHeroSwiper}
           onBeforeInit={(swiper) => {
             swiper.params.navigation.prevEl = prevRef.current;
             swiper.params.navigation.nextEl = nextRef.current;
@@ -88,22 +100,24 @@ export default function HomePage({ data }) {
             </SwiperSlide>
           ))}
         </Swiper>
-        <button
-          ref={prevRef}
-          type="button"
-          aria-label="Previous banner"
-          className="hero-nav-btn hero-prev"
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <button
-          ref={nextRef}
-          type="button"
-          aria-label="Next banner"
-          className="hero-nav-btn hero-next"
-        >
-          <ChevronRight size={20} />
-        </button>
+        <div className="pointer-events-none absolute inset-0 z-30">
+          <button
+            ref={prevRef}
+            type="button"
+            aria-label="Previous banner"
+            className="hero-nav-btn hero-prev"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            ref={nextRef}
+            type="button"
+            aria-label="Next banner"
+            className="hero-nav-btn hero-next"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-12" data-aos="fade-up">
