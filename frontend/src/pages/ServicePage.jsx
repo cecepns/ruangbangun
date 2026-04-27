@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { ClipboardList, Handshake, Home, PenTool, ReceiptText, Wrench } from "lucide-react";
 import desainIcon from "../assets/our-services/desain.jpg";
 import desainKonstruksiIcon from "../assets/our-services/desain-konstruksi.jpg";
 import kontraktorIcon from "../assets/our-services/kontraktor.jpg";
@@ -7,7 +6,6 @@ import { fallbackSteps } from "../constants/site";
 
 export default function ServicePage({ data }) {
   const serviceIcons = [desainIcon, desainKonstruksiIcon, kontraktorIcon];
-  const stepIcons = [Handshake, Home, PenTool, ReceiptText, Wrench, ClipboardList];
   const staticServices = [
     {
       title: "Desain Arsitektur & Interior",
@@ -52,11 +50,10 @@ export default function ServicePage({ data }) {
       <h2 className="mt-12 text-2xl font-bold text-primary">Langkah Kerja</h2>
       <div className="mt-5 grid gap-4 md:grid-cols-2">
         {steps.map((step, idx) => {
-          const Icon = stepIcons[idx % stepIcons.length];
           return (
             <div key={step.title} className="card-ui flex flex-row items-start gap-4" data-aos="fade-up">
-              <div className="rounded-xl bg-secondary/10 p-3 text-secondary">
-                <Icon size={20} />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary text-sm font-bold text-white">
+                {idx + 1}
               </div>
               <div>
                 <p className="font-semibold text-primary">{step.title}</p>
