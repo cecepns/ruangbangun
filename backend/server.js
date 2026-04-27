@@ -62,7 +62,6 @@ const toJson = (raw, fallback) => {
 const normalizePortfolio = (row) => ({
   ...row,
   images: toJson(row.images, []),
-  specs: toJson(row.specs, {}),
 });
 
 const toUploadAbsolutePath = (filePath) => {
@@ -178,19 +177,18 @@ app.delete("/api/admin/testimonials/:id", auth, async (req, res) => {
 });
 
 app.post("/api/admin/portfolios", auth, upload.array("images", 20), async (req, res) => {
-  const { title, category, description, specs } = req.body;
+  const { title, category, description } = req.body;
   const images = (req.files || []).map((f) => `/uploads-ruangbangun/${f.filename}`);
-  await pool.query("INSERT INTO portfolios(title,category,description,specs,images) VALUES(?,?,?,?,?)", [
+  await pool.query("INSERT INTO portfolios(title,category,description,images) VALUES(?,?,?,?)", [
     title,
     category,
     description,
-    JSON.stringify(toJson(specs, {})),
     JSON.stringify(images),
   ]);
   res.json({ message: "Portfolio created" });
 });
 app.put("/api/admin/portfolios/:id", auth, upload.array("images", 20), async (req, res) => {
-  const { title, category, description, specs, keep_images } = req.body;
+  const { title, category, description, keep_images } = req.body;
   const [rows] = await pool.query("SELECT images FROM portfolios WHERE id = ? LIMIT 1", [req.params.id]);
   if (!rows.length) return res.status(404).json({ message: "Portfolio tidak ditemukan" });
 
@@ -200,11 +198,10 @@ app.put("/api/admin/portfolios/:id", auth, upload.array("images", 20), async (re
   const newImages = (req.files || []).map((f) => `/uploads-ruangbangun/${f.filename}`);
   const finalImages = [...keptImages, ...newImages];
 
-  await pool.query("UPDATE portfolios SET title = ?, category = ?, description = ?, specs = ?, images = ? WHERE id = ?", [
+  await pool.query("UPDATE portfolios SET title = ?, category = ?, description = ?, images = ? WHERE id = ?", [
     title || "",
     category || "",
     description || "",
-    JSON.stringify(toJson(specs, {})),
     JSON.stringify(finalImages),
     req.params.id,
   ]);

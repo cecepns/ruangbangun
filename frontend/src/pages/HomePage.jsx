@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Building2,
@@ -11,7 +11,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { fileUrl } from "../api";
 import { FALLBACK_IMAGE, WHATSAPP } from "../constants/site";
 import desainIcon from "../assets/our-services/desain.jpg";
@@ -19,8 +19,6 @@ import desainKonstruksiIcon from "../assets/our-services/desain-konstruksi.jpg";
 import kontraktorIcon from "../assets/our-services/kontraktor.jpg";
 
 export default function HomePage({ data }) {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
   const [heroSwiper, setHeroSwiper] = useState(null);
   const hero = data.banners[0];
   const heroBanners = data.banners.length
@@ -62,29 +60,14 @@ export default function HomePage({ data }) {
     ? data.testimonials
     : [{ id: 1, name: "Klien Ruang Bangun", quote: "Hasil desain dan pelaksanaannya sangat memuaskan." }];
 
-  useEffect(() => {
-    if (!heroSwiper || !prevRef.current || !nextRef.current) return;
-
-    heroSwiper.params.navigation.prevEl = prevRef.current;
-    heroSwiper.params.navigation.nextEl = nextRef.current;
-    heroSwiper.navigation.destroy();
-    heroSwiper.navigation.init();
-    heroSwiper.navigation.update();
-  }, [heroSwiper]);
-
   return (
     <main>
       <section className="relative mx-auto w-full py-0">
         <Swiper
-          modules={[Pagination, Navigation]}
+          modules={[Pagination]}
           slidesPerView={1}
           pagination={{ clickable: true }}
-          navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
           onSwiper={setHeroSwiper}
-          onBeforeInit={(swiper) => {
-            swiper.params.navigation.prevEl = prevRef.current;
-            swiper.params.navigation.nextEl = nextRef.current;
-          }}
           loop={heroBanners.length > 1}
           className="hero-swiper"
         >
@@ -102,18 +85,18 @@ export default function HomePage({ data }) {
         </Swiper>
         <div className="pointer-events-none absolute inset-0 z-30">
           <button
-            ref={prevRef}
             type="button"
             aria-label="Previous banner"
             className="hero-nav-btn hero-prev"
+            onClick={() => heroSwiper?.slidePrev()}
           >
             <ChevronLeft size={20} />
           </button>
           <button
-            ref={nextRef}
             type="button"
             aria-label="Next banner"
             className="hero-nav-btn hero-next"
+            onClick={() => heroSwiper?.slideNext()}
           >
             <ChevronRight size={20} />
           </button>

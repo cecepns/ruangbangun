@@ -5,6 +5,10 @@ import { createPortal } from "react-dom";
 import { fileUrl } from "../../api";
 
 export default function AdminPortfolioPage() {
+  const categoryOptions = [
+    { value: "Desain Arsitek", label: "Desain Arsitek" },
+    { value: "Hasil Konstruksi", label: "Hasil Konstruksi" },
+  ];
   const [openModal, setOpenModal] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const { data, portfolioForm, setPortfolioForm, addPortfolio, updatePortfolio, deletePortfolio } = useOutletContext();
@@ -24,17 +28,6 @@ export default function AdminPortfolioPage() {
     setPortfolioForm({
       title: "",
       category: "",
-      specs: {
-        lebar_depan: "",
-        luas_tanah: "",
-        kamar_tidur: "",
-        luas_bangunan: "",
-        kamar_mandi: "",
-        kamar_art: "",
-        lantai: "",
-        kapasitas_mobil: "",
-        fasilitas_pendukung: "",
-      },
       description: "",
       images: [],
       existingImages: [],
@@ -51,17 +44,6 @@ export default function AdminPortfolioPage() {
     setPortfolioForm({
       title: item.title || "",
       category: item.category || "",
-      specs: {
-        lebar_depan: item.specs?.lebar_depan || "",
-        luas_tanah: item.specs?.luas_tanah || "",
-        kamar_tidur: item.specs?.kamar_tidur || "",
-        luas_bangunan: item.specs?.luas_bangunan || "",
-        kamar_mandi: item.specs?.kamar_mandi || "",
-        kamar_art: item.specs?.kamar_art || "",
-        lantai: item.specs?.lantai || "",
-        kapasitas_mobil: item.specs?.kapasitas_mobil || "",
-        fasilitas_pendukung: item.specs?.fasilitas_pendukung || "",
-      },
       description: item.description || "",
       images: [],
       existingImages: item.images || [],
@@ -153,26 +135,18 @@ export default function AdminPortfolioPage() {
                   value={portfolioForm.title}
                   onChange={(e) => setPortfolioForm((p) => ({ ...p, title: e.target.value }))}
                 />
-                <input
+                <select
                   className="rounded-xl border p-3"
-                  placeholder="Kategori"
                   value={portfolioForm.category}
                   onChange={(e) => setPortfolioForm((p) => ({ ...p, category: e.target.value }))}
-                />
-                {Object.keys(portfolioForm.specs).map((k) => (
-                  <input
-                    key={k}
-                    className="rounded-xl border p-3"
-                    placeholder={k.replaceAll("_", " ")}
-                    value={portfolioForm.specs[k]}
-                    onChange={(e) =>
-                      setPortfolioForm((p) => ({
-                        ...p,
-                        specs: { ...p.specs, [k]: e.target.value },
-                      }))
-                    }
-                  />
-                ))}
+                >
+                  <option value="">Pilih Kategori</option>
+                  {categoryOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div className="mt-4">

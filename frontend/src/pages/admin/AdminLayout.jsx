@@ -7,17 +7,6 @@ import { api } from "../../api";
 const createDefaultPortfolioForm = () => ({
   title: "",
   category: "",
-  specs: {
-    lebar_depan: "",
-    luas_tanah: "",
-    kamar_tidur: "",
-    luas_bangunan: "",
-    kamar_mandi: "",
-    kamar_art: "",
-    lantai: "",
-    kapasitas_mobil: "",
-    fasilitas_pendukung: "",
-  },
   description: "",
   images: [],
   existingImages: [],
@@ -194,7 +183,6 @@ export default function AdminLayout() {
       fd.append("title", payload.title);
       fd.append("category", payload.category);
       fd.append("description", payload.description);
-      fd.append("specs", JSON.stringify(payload.specs));
       Array.from(payload.images || []).forEach((f) => fd.append("images", f));
       await api.post("/admin/portfolios", fd, {
         headers: { ...authHeaders.headers, "Content-Type": "multipart/form-data" },
@@ -214,7 +202,6 @@ export default function AdminLayout() {
       fd.append("title", payload.title);
       fd.append("category", payload.category);
       fd.append("description", payload.description);
-      fd.append("specs", JSON.stringify(payload.specs));
       fd.append("keep_images", JSON.stringify(payload.existingImages || []));
       Array.from(payload.images || []).forEach((f) => fd.append("images", f));
       await api.put(`/admin/portfolios/${id}`, fd, {
