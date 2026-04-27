@@ -63,7 +63,7 @@ export default function HomePage({ data }) {
 
   return (
     <main>
-      <section className="mx-auto w-full py-0">
+      <section className="relative mx-auto w-full py-0">
         <Swiper
           modules={[Pagination, Navigation]}
           slidesPerView={1}

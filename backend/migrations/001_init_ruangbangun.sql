@@ -54,7 +54,7 @@ VALUES (
   1,
   'Kami telah mendesain hunian dan komersial untuk memenuhi kebutuhan klien di seluruh Indonesia sejak tahun 2019. Kami menawarkan layanan desain dan pengembangan mulai dari konseptualisasi hingga realisasi.',
   'hello@ruangbangun.id',
-  '+62 812-3456-7890',
+  '62 857-1188-3099',
   'Jakarta, Indonesia',
   '',
   JSON_ARRAY(

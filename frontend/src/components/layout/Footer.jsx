@@ -15,7 +15,7 @@ export default function Footer({ settings }) {
           <div className="mt-3 space-y-2 text-base">
             <p className="flex items-center gap-2">
               <Phone size={16} />
-              {settings?.phone || "+62 812-3456-7890"}
+              {settings?.phone || "62 857-1188-3099"}
             </p>
             <p className="flex items-center gap-2">
               <Mail size={16} />

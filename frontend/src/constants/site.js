@@ -1,4 +1,4 @@
-export const WHATSAPP = "https://wa.me/6281234567890";
+export const WHATSAPP = "https://wa.me/6285711883099";
 export const FALLBACK_IMAGE = "/logo.jpeg";
 
 export const fallbackAbout =

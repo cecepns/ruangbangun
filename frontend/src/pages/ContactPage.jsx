@@ -53,7 +53,7 @@ export default function ContactPage({ data }) {
       </a>
       <div className="mt-10 grid gap-4 md:grid-cols-2">
         <div className="card-ui">{data.settings?.email || "hello@ruangbangun.id"}</div>
-        <div className="card-ui">{data.settings?.phone || "+62 812-3456-7890"}</div>
+        <div className="card-ui">{data.settings?.phone || "62 857-1188-3099"}</div>
       </div>
       <h2 className="mt-10 text-2xl font-bold text-primary">FAQ</h2>
       <div className="mt-4 space-y-4">

@@ -43,15 +43,15 @@ body {
 }
 
 .hero-nav-btn {
-  @apply absolute top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/35 text-white backdrop-blur transition hover:scale-105 hover:bg-black/55 md:h-12 md:w-12;
+  @apply absolute top-1/2 z-30 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/35 text-white backdrop-blur transition hover:scale-105 hover:bg-black/55 pointer-events-auto md:h-12 md:w-12;
 }
 
 .hero-prev {
-  @apply left-6;
+  @apply left-3 md:left-6;
 }
 
 .hero-next {
-  @apply right-6;
+  @apply right-3 md:right-6;
 }
 
 .testimonial-swiper .swiper-pagination-bullet {
