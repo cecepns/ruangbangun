@@ -1,0 +1,2 @@
+ALTER TABLE settings
+ADD COLUMN about_us_title VARCHAR(191) NULL AFTER id;

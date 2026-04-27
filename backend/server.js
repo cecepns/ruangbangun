@@ -220,13 +220,13 @@ app.delete("/api/admin/portfolios/:id", auth, async (req, res) => {
 });
 
 app.put("/api/admin/settings", auth, async (req, res) => {
-  const { about_us, email, phone, address, maps_url, faqs } = req.body;
+  const { about_us_title, about_us, email, phone, address, maps_url, faqs } = req.body;
   await pool.query(
-    `INSERT INTO settings (id, about_us, email, phone, address, maps_url, faqs)
-     VALUES (1,?,?,?,?,?,?)
-     ON DUPLICATE KEY UPDATE about_us=VALUES(about_us), email=VALUES(email), phone=VALUES(phone),
+    `INSERT INTO settings (id, about_us_title, about_us, email, phone, address, maps_url, faqs)
+     VALUES (1,?,?,?,?,?,?,?)
+     ON DUPLICATE KEY UPDATE about_us_title=VALUES(about_us_title), about_us=VALUES(about_us), email=VALUES(email), phone=VALUES(phone),
      address=VALUES(address), maps_url=VALUES(maps_url), faqs=VALUES(faqs)`,
-    [about_us || "", email || "", phone || "", address || "", maps_url || "", JSON.stringify(faqs || [])],
+    [about_us_title || "", about_us || "", email || "", phone || "", address || "", maps_url || "", JSON.stringify(faqs || [])],
   );
   res.json({ message: "Settings updated" });
 });

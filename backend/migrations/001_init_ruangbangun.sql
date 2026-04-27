@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS testimonials (
 
 CREATE TABLE IF NOT EXISTS settings (
   id INT PRIMARY KEY,
+  about_us_title VARCHAR(191) NULL,
   about_us LONGTEXT NULL,
   email VARCHAR(191) NULL,
   phone VARCHAR(100) NULL,
@@ -49,9 +50,10 @@ CREATE TABLE IF NOT EXISTS settings (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-INSERT INTO settings (id, about_us, email, phone, address, maps_url, faqs)
+INSERT INTO settings (id, about_us_title, about_us, email, phone, address, maps_url, faqs)
 VALUES (
   1,
+  'About Us',
   'Kami telah mendesain hunian dan komersial untuk memenuhi kebutuhan klien di seluruh Indonesia sejak tahun 2019. Kami menawarkan layanan desain dan pengembangan mulai dari konseptualisasi hingga realisasi.',
   'hello@ruangbangun.id',
   '62 857-1188-3099',
