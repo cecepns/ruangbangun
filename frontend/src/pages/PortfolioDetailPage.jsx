@@ -25,7 +25,7 @@ export default function PortfolioDetailPage({ data }) {
         <Swiper spaceBetween={16} slidesPerView={1}>
           {item.images.map((img) => (
             <SwiperSlide key={img}>
-              <img src={fileUrl(img)} alt={item.title} className="h-screen w-full rounded-3xl object-cover" />
+              <img src={fileUrl(img)} alt={item.title} className="h-full w-full object-cover md:h-screen md:rounded-3xl" />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -33,10 +33,10 @@ export default function PortfolioDetailPage({ data }) {
         <img
           src={item.images?.[0] ? fileUrl(item.images[0]) : FALLBACK_IMAGE}
           alt={item.title}
-          className="h-screen w-full rounded-3xl object-cover"
+          className="h-full w-full object-cover md:h-screen rounded md:rounded-3xl"
         />
       )}
-      <h1 className="mt-8 text-3xl font-bold text-primary">{item.title}</h1>
+      <h1 className="mt-8 text-2xl md:text-3xl font-bold text-primary">{item.title}</h1>
       <div
         className="prose mt-8 max-w-none"
         dangerouslySetInnerHTML={{ __html: item.description || "<p>Belum ada deskripsi.</p>" }}
