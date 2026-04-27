@@ -12,7 +12,16 @@ import FloatingWhatsApp from "../components/common/FloatingWhatsApp";
 
 export default function PublicLayout() {
   const data = usePublicData();
-  if (data.loading) return <div className="p-10 text-center">Loading...</div>;
+  if (data.loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-white px-4">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-14 w-14 animate-spin rounded-full border-4 border-primary/20 border-t-secondary" />
+          <p className="text-sm font-medium text-primary/80">Memuat konten...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
