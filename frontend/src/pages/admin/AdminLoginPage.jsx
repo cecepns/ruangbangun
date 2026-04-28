@@ -4,7 +4,7 @@ import { api } from "../../api";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("admin123");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
